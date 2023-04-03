@@ -1,0 +1,43 @@
+import random
+
+oyunun_kurallari = {'taş': 'makas','makas': 'kağıt','kağıt': 'taş'}
+
+oyuncu_ismi = input("Oyuna Hoşgeldin:) İsmin nedir? ")
+
+
+bilgisayarin_puani = 0
+oyuncunun_puani = 0
+
+for i in range(5):
+   
+    oyuncunun_hamlesi = input(f"{oyuncu_ismi}, taşı mı?, kağıdı mı?, makası mı seçersin? ").lower()
+
+    while oyuncunun_hamlesi.lower() not in oyunun_kurallari.keys():
+        oyuncunun_hamlesi = input("HATA:taş,kağıt ya da makas'tan birini seçmelisin! ")
+
+    bilgisayarin_hamlesi = random.choice(['taş', 'kağıt', 'makas'])
+
+    if oyuncunun_hamlesi.lower() == bilgisayarin_hamlesi:
+        print("*******")
+        print("Beraberesiniz!")
+        
+    elif oyunun_kurallari[oyuncunun_hamlesi.lower()] != bilgisayarin_hamlesi:
+        print("*******")
+        print("Oyunu BİLGİSAYAR kazandı :( ")
+        bilgisayarin_puani += 1
+    else:
+        print("********")
+        print(f"{oyuncu_ismi} kazandın!")
+        oyuncunun_puani += 1
+
+    print(f"{oyuncu_ismi}: {oyuncunun_hamlesi} 'ı \nBilgisayar: {bilgisayarin_hamlesi} 'ı seçti" )
+    print(f"{oyuncu_ismi} nın puanı: {oyuncunun_puani} VS Bilgisayarın puanı: {bilgisayarin_puani}")
+
+if oyuncunun_puani > bilgisayarin_puani:
+    print("Oyunu sen kazandın :)))) ")
+    
+elif bilgisayarin_puani > oyuncunun_puani:
+    print("Oyunu Bilgisayar kazandı :(  ")
+    
+else:
+    print("Oyun berabere bitti!")
